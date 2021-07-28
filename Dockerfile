@@ -4,7 +4,7 @@
 #BUILD STAGE
 FROM openjdk:11 AS base
 #crear un directorio de trabajo:
-WORKDIR /opt/hello-gradle
+WORKDIR /opt/hello-srping
 #Copiar en el workdir lo de gradle
 COPY ./ ./
 #COPY build/libs/demo-0.0.1-SNAPSHOT.jar ./
@@ -17,8 +17,8 @@ RUN ./gradlew assemble \
 
 # RUNTIME STAGE
 FROM amazoncorretto:11
-WORKDIR /opt/hello-gradle
-COPY --from=base /opt/hello-gradle/build/libs/demo-0.0.1-SNAPSHOT.jar ./
+WORKDIR /opt/hello-srping
+COPY --from=base /opt/hello-srping/build/libs/hello-srping-0.0.1-SNAPSHOT.jar ./
 
-CMD java -jar demo-0.0.1-SNAPSHOT.jar
+CMD java -jar hello-srping-0.0.1-SNAPSHOT.jar
 # java -jar build/libs/demo-0.0.1-SNAPSHOT.jar | Para hacerlo desde el ejecutable pre creado.
