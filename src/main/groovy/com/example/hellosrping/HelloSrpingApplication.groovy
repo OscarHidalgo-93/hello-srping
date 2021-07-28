@@ -20,7 +20,7 @@ class HelloSrpingApplication {
         public String hello(@RequestParam(value = "name", defaultValue = "Oscar") String name) {
             return String.format("Hello %s!", name);
     }
-    @GetMapping("/holaMundoSpring")
+    @GetMapping("/spring")
         public String hola(@RequestParam(value = "name2", defaultValue = "MundoSpring") String name2){
             return String.format("Hello %s!", name2);
         }
