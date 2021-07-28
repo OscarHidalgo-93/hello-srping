@@ -18,11 +18,11 @@ class HelloSrpingApplication {
     }
     @GetMapping("/")
         public String hello(@RequestParam(value = "name", defaultValue = "Oscar") String name) {
-        return String.format("Hello %s!", name);
+            return String.format("Hello %s!", name);
     }
     @GetMapping("/holaMundoSpring")
-        public String hola(@RequestParam(value = "name", defaultValue = "MundoSpring") String name){
-            return String.format("Hello %s!", name);
+        public String hola(@RequestParam(value = "name2", defaultValue = "MundoSpring") String name2){
+            return String.format("Hello %s!", name2);
         }
     }
 
