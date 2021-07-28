@@ -31,7 +31,7 @@ pipeline {
             steps {
 
                 echo 'Se arcivó el artefacto, Desplegando...'
-                sh 'docker run -it -p 8081:8081 hello-spring'
+                sh 'java -jar build/libs/hello-srping-0.0.1-SNAPSHOT.jar'
             }
         }
 
