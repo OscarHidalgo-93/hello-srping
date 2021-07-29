@@ -12,8 +12,7 @@ COPY ./ ./
 #CMD ./gradlew bootRun
 #RUN ./gradlew assemble --> generar el .jar
 #RUN ./gradlew assemble
-RUN ./gradlew assemble \
-  && rm -rf /root/.gradle
+RUN ./gradlew assemble
 
 # RUNTIME STAGE
 FROM amazoncorretto:11
