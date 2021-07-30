@@ -39,7 +39,7 @@ pipeline {
     // Parte de ssh Agent
                 sshagent (credentials: ['sshJenkins']) {        
                     sh 'git tag MAIN-1.0.${BUILD_NUMBER}'
-                    sh 'git push --tags' 
+                    sh 'git push --tags' //Se le puede poner en lugar de todos los cambios, hacerlo por el tag que queramos
                 }
 
             }
