@@ -37,9 +37,9 @@ pipeline {
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
 
     // Parte de ssh Agent
-    //
+
                 node {
-                sshagent (credentials: ['sshJenkins]) {        
+                sshagent (credentials: ['sshJenkins']) {        
                 sh 'git tag MAIN-1.0.${BUID_NUMBER}'
                 sh 'git push --tags' 
   }
