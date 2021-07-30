@@ -7,6 +7,14 @@ pipeline {
 
     stages {
 
+        stage('gitlab'){
+            steps{
+                echo 'Notify Gitlab'
+                updateGitlabCommitStatus name: 'build' , state: 'pending'
+                updateGitlabCommitStatus name: 'build' , state: 'success'
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Buildeando...'
