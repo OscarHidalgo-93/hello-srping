@@ -34,7 +34,16 @@ pipeline {
 
                 echo 'Se arcivó el artefacto, Desplegando...'
                 sh 'docker-compose up -d'
-                //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar'
+                //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
+
+    // Parte de ssh Agent
+    //
+                node {
+                sshagent (credentials: ['sshJenkins]) {        
+                sh 'git tag MAIN-1.0.${BUID_NUMBER}'
+                sh 'git push --tags' 
+  }
+}
             }
         }
 
@@ -43,6 +52,7 @@ pipeline {
                 echo 'Notify Gitlab'
                 updateGitlabCommitStatus name: 'build' , state: 'pending'
                 updateGitlabCommitStatus name: 'build' , state: 'success'
+
             }
         }
 
