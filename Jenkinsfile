@@ -45,7 +45,7 @@ pipeline {
             steps {
 
                 echo 'Se arcivó el artefacto, Desplegando...'
-                sh 'docker-compose up -d'
+                //sh 'docker-compose up -d'
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
 
     // Parte de ssh Agent
