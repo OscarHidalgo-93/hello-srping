@@ -15,12 +15,12 @@ pipeline {
                     sh './gradlew clean test'
                 }
                 
-                post{
-                    always{
+                //post{
+                   // always{
                         junit 'build/test-results/test/TEST-*.xml'
 
-                    }
-                }
+                   // }
+               // }
 
             }
 
