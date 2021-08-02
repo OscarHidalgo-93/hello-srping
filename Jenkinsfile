@@ -10,8 +10,10 @@ pipeline {
 
         stage ('Test'){
             steps{
-                echo 'Testeando...'            
-                sh './gradlew clean test'
+                echo 'Testeando...'  
+                withGradle{          
+                    sh './gradlew clean test'
+                }
                 junit 'build/test-results/test/TEST-*.xml'
 
             }
@@ -22,7 +24,7 @@ pipeline {
             steps {
                 echo 'Buildeando...'
                 withGradle {
-    // some block
+    // some block. las comillas triples es para instrucciones de varias lineas.
     sh '''
                  ./gradlew assemble \
        '''
