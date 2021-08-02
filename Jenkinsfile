@@ -29,6 +29,18 @@ pipeline {
             }
              }
         }
+
+        stage ('Test'){
+            steps{
+                echo 'Testeando...'
+                sh './gradlew test'
+
+            }
+
+
+
+
+        }
         stage('Deploying') {
             steps {
 
