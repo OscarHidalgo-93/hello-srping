@@ -34,11 +34,13 @@ pipeline {
                     
             }
         }
-        recordIssues{
+        post{
+            recordIssues{
                         tools: [
                             pmdParser('build/reports/pmd/*.xml')
                         ]
-                    }
+                    }}
+        
                 }
 
         stage('Build') {
