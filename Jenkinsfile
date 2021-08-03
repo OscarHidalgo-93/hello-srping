@@ -75,7 +75,7 @@ pipeline {
         }
         stage('Security'){
             steps{
-                echo 'Cecking...'
+                echo 'Ceckeando vulnerabilidades...'
                 sh 'trivy image hello-spring-testing:latest'
             }
         }
