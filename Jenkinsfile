@@ -76,8 +76,7 @@ pipeline {
         stage('Security'){
             steps{
                 echo 'Security analisis...'
-                sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest
-'
+                sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest'
             }
             post{
                 always{
