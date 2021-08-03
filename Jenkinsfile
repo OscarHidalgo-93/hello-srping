@@ -59,9 +59,11 @@ pipeline {
                     sh '''
                  ./gradlew assemble \
                        '''
-                       */
+
 
                 }
+
+               */
 
 
             }
