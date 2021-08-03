@@ -69,7 +69,7 @@ pipeline {
             post {
                 success {
                     echo 'Archivando...'
-                    archiveArtifacts artifacts: 'build/libs/*.jar'
+                    //archiveArtifacts artifacts: 'build/libs/*.jar'
                 }
             }
         }
