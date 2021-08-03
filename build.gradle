@@ -4,8 +4,7 @@ plugins {
     id 'groovy'
     id 'pmd'
     id 'jacoco'
-
-
+    id "com.github.spotbugs" version "4.7.2"
 }
 
 group = 'com.example'
@@ -37,6 +36,9 @@ jacocoTestReport {
 pmd{
     consoleOutput = true
     toolVersion = "6.21.0"
-    rulesMinimumPriority = 5
     ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+}
+
+spotbugs{
+    ignoreFailures = true
 }
