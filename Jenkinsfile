@@ -31,9 +31,15 @@ pipeline {
                 echo 'Checking...'
                 withGradle{
                     sh '.gradlew check'
-                }
+                    
             }
         }
+        recordIssues{
+                        tools: [
+                            pmdParser('build/reports/pmd/*.xml')
+                        ]
+                    }
+                }
 
         stage('Build') {
             steps {
