@@ -76,7 +76,8 @@ pipeline {
         stage('Security'){
             steps{
                 echo 'Security analisis...'
-                sh 'trivy image --format=json --output=trivy-image.json hello-spring-pruebas:latest'
+                sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest
+'
             }
             post{
                 always{
@@ -95,6 +96,7 @@ pipeline {
             steps {
 
                 echo 'Se arcivó el artefacto, Desplegando...'
+                //mirar despliegue con pipeline con sentencia 'when
                 //sh 'docker-compose up -d'
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
 
