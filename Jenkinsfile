@@ -52,11 +52,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Buildeando...'
-                withGradle {
+                sh 'docker-compose up -d'
+
+              /*  withGradle {
                     // some block. las comillas triples es para instrucciones de varias lineas.
                     sh '''
                  ./gradlew assemble \
-       '''
+                       '''
+                       */
+
                 }
 
 
