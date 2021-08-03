@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
 
@@ -35,11 +36,14 @@ pipeline {
             }
         }
         post{
-            recordIssues{
+            always{
+                recordIssues{
                 tools: [
                     pmdParser(pattern: 'build/reports/pmd/*.xml')
                         ]
                     }
+            }
+            
                 }
         
                 }
