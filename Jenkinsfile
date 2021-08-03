@@ -52,15 +52,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Buildeando...'
-                sh 'docker-compose up -d'
+                sh 'docker-compose build'
 
               /*  withGradle {
                     // some block. las comillas triples es para instrucciones de varias lineas.
                     sh '''
                  ./gradlew assemble \
                        '''
-
-
                 }
 
                */
@@ -73,6 +71,12 @@ pipeline {
                     echo 'Archivando...'
                     archiveArtifacts artifacts: 'build/libs/*.jar'
                 }
+            }
+        }
+        stage('Security'){
+            steps{
+                echo 'Cecking...'
+                sh 'trivy image hello-spring-testing:latest'
             }
         }
 
