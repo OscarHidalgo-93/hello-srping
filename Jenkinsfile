@@ -83,7 +83,7 @@ pipeline {
                     recordIssues(
                             enabledForFailure: true,
                             aggregatingResults: true,
-                            tool: trivy(pattern: 'trivi-*.json')
+                            tool: trivy(pattern: 'trivy-*.json')
 
 
                     )
