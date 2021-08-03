@@ -19,7 +19,7 @@ class HttpRequest {
 
     @Test
     public void canAdd() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/add?a=4&b=6", String.class))
+        assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/suma?a=4&b=6", String.class))
         .isEqualTo("10.0");
     }
 
