@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo 'Checking...'
                 withGradle {
-                    sh './gradlew check'
+                    sh './gradlew clean check'
 
                 }
             }
@@ -77,6 +77,17 @@ pipeline {
             steps{
                 echo 'Security analisis...'
                 sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
+            }
+            post{
+                always{
+                    recordIssues(
+                            enabledForFailure: true,
+                            aggregatingResults: true,
+                            tool: trivy(pattern: 'trivi-*.json')
+
+
+                    )
+                }
             }
         }
 
