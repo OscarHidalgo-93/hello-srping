@@ -30,16 +30,17 @@ pipeline {
             steps{
                 echo 'Checking...'
                 withGradle{
-                    sh '.gradlew check'
+                    sh './gradlew check'
                     
             }
         }
         post{
             recordIssues{
-                        tools: [
-                            pmdParser('build/reports/pmd/*.xml')
+                tools: [
+                    pmdParser(pattern: 'build/reports/pmd/*.xml')
                         ]
-                    }}
+                    }
+                }
         
                 }
 
