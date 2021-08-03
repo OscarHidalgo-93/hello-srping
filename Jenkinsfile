@@ -75,8 +75,8 @@ pipeline {
         }
         stage('Security'){
             steps{
-                echo 'Ceckeando vulnerabilidades...'
-                sh 'trivy image hello-spring-testing:latest'
+                echo 'Security analisis...'
+                sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
             }
         }
 
