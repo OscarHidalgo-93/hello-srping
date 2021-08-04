@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Testeando...'
                 withGradle {
-                    sh './gradlew clean test'
+                    sh './gradlew clean test pitest'
                 }
             }
             post {
