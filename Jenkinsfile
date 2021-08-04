@@ -28,7 +28,6 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            echo 'Comporbando desde SonarQube...'
             withSonarQubeEnv() {
                 sh "./gradlew sonarqube"
             }
