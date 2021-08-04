@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     @Test
     void Dumy(){
         assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/spring", String.class))
-                .isEqualTo("Hello MundoSpring");
+                .isEqualTo("Hello MundoSpring!");
 
     }
 }
