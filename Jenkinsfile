@@ -9,7 +9,6 @@ pipeline {
 
     stages {
 
-
         stage('Test') {
             steps {
                 echo 'Testeando...'
@@ -26,6 +25,13 @@ pipeline {
             }
 
 
+        }
+
+        stage('SonarQube Analysis') {
+            echo 'Comporbando desde SonarQube...'
+            withSonarQubeEnv() {
+                sh "./gradlew sonarqube"
+            }
         }
         stage('QA') {
             steps {
