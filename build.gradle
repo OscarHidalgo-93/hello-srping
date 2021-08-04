@@ -48,3 +48,6 @@ sonarqube {
         property "sonar.projectKey", "OscarH93_hello-srping_AXsQCbNmx0gCSfSd0Xd4"
     }
 }
+pmd{
+    ignoreFailures = true
+}
