@@ -20,6 +20,8 @@ pipeline {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
                     jacoco execPattern: 'build/jacoco/*.exec'
+                    recordIssues(enabledForFailure: true,
+                            tool: pit(pattern: "build/reports/pitest/**/*.xml"))
 
                 }
             }
@@ -27,50 +29,59 @@ pipeline {
 
         }
 
-        stage('SonarQube Analysis') {
-            steps{
-                withSonarQubeEnv('SonarQube-sever') {
-                    sh "./gradlew sonarqube"
+        stage {
+            falilfast = true
+            parallel {
+                stage('SonarQube Analysis') {
+                    when { expression { true } } //expresion condicional, nos dejara de hacer el test ==> coments
+                    steps {
+                        withSonarQubeEnv('SonarQube-sever') {
+                            sh "./gradlew sonarqube"
+                        }
+
+                    }
+
+                }
+                stage('QA') {
+                    steps {
+                        echo 'Checking...'
+                        withGradle {
+                            sh './gradlew clean check'
+
+                        }
+                    }
+                    post {
+                        always {
+                            recordIssues(
+                                    tools: [
+                                            pmdParser(pattern: 'build/reports/pmd/*.xml'),
+                                            spotBugs(pattern: 'build/reports/spotbugs/*.xml')
+                                    ]
+                            )
+                        }
+
+                    }
+
                 }
 
-            }
 
+            }
         }
-        stage('QA') {
-            steps {
-                echo 'Checking...'
-                withGradle {
-                    sh './gradlew clean check'
 
-                }
-            }
-            post {
-                always {
-                    recordIssues(
-                            tools: [
-                                    pmdParser(pattern: 'build/reports/pmd/*.xml'),
-                                    spotBugs(pattern: 'build/reports/spotbugs/*.xml')
-                            ]
-                    )
-                }
-
-            }
-
-        }
 
         stage('Build') {
             steps {
                 echo 'Buildeando...'
                 sh 'docker-compose build'
 
-              /*  withGradle {
-                    // some block. las comillas triples es para instrucciones de varias lineas.
-                    sh '''
-                 ./gradlew assemble \
-                       '''
-                }
+                /*  withGradle {
+                      // some block. las comillas triples es para instrucciones de varias lineas.
+                      sh '''
+                   ./gradlew assemble \
+                         '''
+                  }
 
-               */
+                 */
 
 
             }
@@ -82,13 +93,13 @@ pipeline {
                 }
             }
         }
-        stage('Security'){
-            steps{
+        stage('Security') {
+            steps {
                 echo 'Security analisis...'
                 sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest'
             }
-            post{
-                always{
+            post {
+                always {
                     recordIssues(
                             enabledForFailure: true,
                             aggregatingResults: true,
