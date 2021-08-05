@@ -30,7 +30,7 @@ pipeline {
         }
 
         stage ('Analisis') {
-            falilfast  true
+            failfast  true
             parallel {
                 stage('SonarQube Analysis') {
                     when { expression { true } } //expresion condicional, nos dejara de hacer el test ==> coments
