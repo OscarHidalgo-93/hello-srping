@@ -33,7 +33,7 @@ pipeline {
             failFast  true
             parallel {
                 stage('SonarQube Analysis') {
-                    when { expression { true } } //expresion condicional, nos dejara de hacer el test ==> coments
+                    when { expression { false } } //expresion condicional, nos dejara de hacer el test ==> coments
                     steps {
                         withSonarQubeEnv('SonarQube-sever') {
                             sh "./gradlew sonarqube"
