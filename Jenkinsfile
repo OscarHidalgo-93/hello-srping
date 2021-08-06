@@ -122,7 +122,7 @@ pipeline {
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
 
                 withDockerRegistry([url:'http://10.250.12.3:5050', credentialsId:'token-dockerRegistry']){
-                    sh 'docker tag hello-srping-pruebas:latest 10.250.12.3:5050/oscarh93/hello-srping:PRUEBAS-1.0.0'
+                    sh 'docker tag hello-srping-pruebas:latest 10.250.12.3:5050/oscarh93/hello-srping:PRUEBAS-1.${BUILD_NUMBER}'
                     sh 'docker push 10.250.12.3:5050/oscarh93/hello-srping:PRUEBAS-1.${BUILD_NUMBER}'
 
                 }                
