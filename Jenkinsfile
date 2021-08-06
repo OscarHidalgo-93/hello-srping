@@ -10,7 +10,7 @@ pipeline {
     stages {
 
         stage('Test') {
-            when{ expresion { false } }
+            when { expression { false } }
             steps {
                 echo 'Testeando...'
                 withGradle {
@@ -44,7 +44,7 @@ pipeline {
 
                 }
                 stage('QA') {
-                    when{ expresion { false } }
+                    when { expression { false } }
                     steps {
                         echo 'Checking...'
                         withGradle {
