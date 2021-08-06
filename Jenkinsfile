@@ -10,6 +10,7 @@ pipeline {
     stages {
 
         stage('Test') {
+            when{ expresion { false } }
             steps {
                 echo 'Testeando...'
                 withGradle {
@@ -43,6 +44,7 @@ pipeline {
 
                 }
                 stage('QA') {
+                    when{ expresion { false } }
                     steps {
                         echo 'Checking...'
                         withGradle {
@@ -119,7 +121,7 @@ pipeline {
                 //sh 'docker-compose up -d'
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
 
-                withDockerRegistry([url:'10.250.12.3:5050', credentialsId:'gitlab+deploy-token-1']){
+                withDockerRegistry([url:'http://10.250.12.3:5050', credentialsId:'gitlab+deploy-token-1']){
                     sh 'docker tag hello-srping-pruebas:latest 10.250.12.3:5050/oscarh93/hello-srping:PRUEBAS-1.0.0'
                     sh 'docker push 10.250.12.3:5050/oscarh93/hello-srping:PRUEBAS-1.${BUILD_NUMBER}'
 
