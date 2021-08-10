@@ -113,10 +113,10 @@ pipeline {
             }
         }
 
-        stage('Deploying') {
+        stage('Publish') {
             steps {
 
-                echo 'Se arcivó el artefacto, Desplegando...'
+                echo 'Se arcivó el artefacto, Publicando...'
                 //mirar despliegue con pipeline con sentencia 'when
                 //sh 'docker-compose up -d'
                 //'java -jar  build/libs/hello-srping-0.0.1-SNAPSHOT.jar' --> aqui tira directamente del .jar
@@ -134,6 +134,19 @@ pipeline {
                     //Se le puede poner en lugar de todos los cambios, hacerlo por el tag que queramos
                 }
 
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                echo 'Desplegando servicio...'
+                sshagent(credentials['appkey']){
+                    ssh '''
+                        cd hello-spring
+                        docker-compose pull
+                        docker-compose up -d
+                    '''
+                }
             }
         }
 
