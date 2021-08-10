@@ -145,8 +145,8 @@ pipeline {
                 echo 'Desplegando servicio...'
                 sshagent(credentials: ['appkey']){
                     sh '''
-                        ssh -i app app@10.250.12.3 'cd hello-spring && docker-compose pull && docker-compose up -d' 
-                        
+                         ssh app@10.250.12.3 'cd hello-spring && docker-compose pull && docker-compose up -d' 
+
                        '''
 
                 }
