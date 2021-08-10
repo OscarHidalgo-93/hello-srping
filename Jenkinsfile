@@ -144,9 +144,10 @@ pipeline {
             steps{
                 echo 'Desplegando servicio...'
                 sshagent(credentials: ['appkey']){
-                    sh 'ssh -o StrictHostKeyChecking=no'
+                    
                     sh '''
-                         ssh app@10.250.12.3 'cd hello-spring && docker-compose pull && docker-compose up -d' 
+                        
+                         ssh -o StrictHostKeyChecking=no app@10.250.12.3 'cd hello-spring && docker-compose pull && docker-compose up -d' 
 
                        '''
 
