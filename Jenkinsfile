@@ -72,6 +72,7 @@ pipeline {
 
 
         stage('Build') {
+             when { expression { false } }
             steps {
                 echo 'Buildeando...'
                 sh 'docker-compose build'
@@ -96,6 +97,7 @@ pipeline {
             }
         }
         stage('Security') {
+             when { expression { false } }
             steps {
                 echo 'Security analisis...'
                 sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest'
@@ -114,6 +116,7 @@ pipeline {
         }
 
         stage('Publish') {
+             when { expression { false } }
             steps {
 
                 echo 'Se arcivó el artefacto, Publicando...'
@@ -141,7 +144,7 @@ pipeline {
             steps{
                 echo 'Desplegando servicio...'
                 sshagent(credentials['appkey']){
-                    ssh '''
+                    sh '''
                         cd hello-spring
                         docker-compose pull
                         docker-compose up -d
