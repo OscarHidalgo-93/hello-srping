@@ -143,7 +143,7 @@ pipeline {
         stage('Deploy'){
             steps{
                 echo 'Desplegando servicio...'
-                sshagent(credentials['appkey']){
+                sshagent(credentials: ['appkey']){
                     sh '''
                         cd hello-spring
                         docker-compose pull
