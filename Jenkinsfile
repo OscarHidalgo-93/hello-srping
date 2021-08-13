@@ -9,8 +9,7 @@ pipeline {
 
     stages {
 
-        stage('Test') {
-            when { expression { false } }
+        stage('Test') {           
             steps {
                 echo 'Testeando...'
                 withGradle {
@@ -34,7 +33,7 @@ pipeline {
             failFast  true
             parallel {
                 stage('SonarQube Analysis') {
-                    when { expression { false } } //expresion condicional, nos dejara de hacer el test ==> coments
+                 //   when { expression { false } } //expresion condicional, nos dejara de hacer el test ==> coments
                     steps {
                         withSonarQubeEnv('SonarQube-sever') {
                             sh "./gradlew sonarqube"
@@ -43,8 +42,7 @@ pipeline {
                     }
 
                 }
-                stage('QA') {
-                    when { expression { false } }
+                stage('QA') {                 
                     steps {
                         echo 'Checking...'
                         withGradle {
@@ -71,8 +69,7 @@ pipeline {
         }
 
 
-        stage('Build') {
-             when { expression { false } }
+        stage('Build') {            
             steps {
                 echo 'Buildeando...'
                 sh 'docker-compose build'
@@ -96,8 +93,7 @@ pipeline {
                 }
             }
         }
-        stage('Security') {
-             when { expression { false } }
+        stage('Security') {            
             steps {
                 echo 'Security analisis...'
                 sh 'trivy image --format=json --output=trivy-image.json hello-srping-pruebas:latest'
@@ -115,8 +111,7 @@ pipeline {
             }
         }
 
-        stage('Publish') {
-             when { expression { false } }
+        stage('Publish') {           
             steps {
 
                 echo 'Se arcivó el artefacto, Publicando...'
